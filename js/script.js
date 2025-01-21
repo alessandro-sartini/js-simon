@@ -64,9 +64,10 @@ function dNoneFunction() {
     numeriInseriti.classList.remove('d-none')
 
 }
-// input-group
-// numeriScritti=[]
-// const inputGroup = document.getElementById('input-group');
-// numeriScritti.push(inputGroup.value)
-// console.log(numeriScritti)
+numeriScrittiUtente = []
+const btn = document.getElementById('message');
+
+const inputGroup = document.getElementById('input-group');
+numeriScrittiUtente.push(inputGroup.value)
+console.log(numeriScrittiUtente)
 
