@@ -51,7 +51,7 @@ function displayNumbers(numbers) {
 
 }
 
-// !FACCIO SPARIRE LA LISTA DI NUMERI DOPO TOT SECONDI
+//! FACCIO SPARIRE LA LISTA DI NUMERI DOPO TOT SECONDI
 displayNumbers(randomNumbers)
 setTimeout(dNoneFunction, 1000)
 
@@ -64,10 +64,26 @@ function dNoneFunction() {
     numeriInseriti.classList.remove('d-none')
 
 }
-numeriScrittiUtente = []
-const btn = document.getElementById('message');
 
-const inputGroup = document.getElementById('input-group');
-numeriScrittiUtente.push(inputGroup.value)
-console.log(numeriScrittiUtente)
+
+
+//! ho preso tutti i numeri scritti da utente
+
+const btn =   document.querySelector('button')
+    
+btn.addEventListener('click', function (event) {
+    event.preventDefault(); 
+
+    const randomInput = document.querySelectorAll('.form-control');
+    const values = [];
+
+    // Itera sugli input e salva i loro valori
+    for (let i = 0; i < randomInput.length; i++) {
+        values.push(randomInput[i].value)
+    }
+
+    console.log(values);
+})
+
+
 
