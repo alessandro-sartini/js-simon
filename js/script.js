@@ -33,12 +33,15 @@ function numberGen(arrayNum) {
     return arrayNum
 }
 
-
-
 console.log(numberGen(randomNumbers));
+
+
+
 
 // Mostra i numeri generati nella console
 //! Funzione per aggiungere i numeri ai li APPENA CREATI
+
+
 function displayNumbers(numbers) {
 
     const numbersList = document.getElementById('numbers-list');
@@ -51,14 +54,20 @@ function displayNumbers(numbers) {
 
 }
 
-//! FACCIO SPARIRE LA LISTA DI NUMERI DOPO TOT SECONDI
+
 displayNumbers(randomNumbers)
-setTimeout(dNoneFunction, 1000)
+
+
+const listaNumeri = document.getElementById('numbers-list');
+
+
+
+//! FACCIO SPARIRE LA LISTA DI NUMERI DOPO TOT SECONDI
+setInterval(dNoneFunction, 3000)
 
 function dNoneFunction() {
     
     const listaNumeri = document.getElementById('numbers-list');
-
     listaNumeri.classList.add("d-none");
     const numeriInseriti = document.getElementById('answers-form');
     numeriInseriti.classList.remove('d-none')
@@ -68,22 +77,45 @@ function dNoneFunction() {
 
 
 //! ho preso tutti i numeri scritti da utente
-
-const btn =   document.querySelector('button')
-    
+const btn = document.querySelector('button');
 btn.addEventListener('click', function (event) {
-    event.preventDefault(); 
+    event.preventDefault(); // Previene il comportamento predefinito del form
 
     const randomInput = document.querySelectorAll('.form-control');
-    const values = [];
+    const numeriScritti = [];
 
-    // Itera sugli input e salva i loro valori
+    // Itera sugli input e salva i numeri
     for (let i = 0; i < randomInput.length; i++) {
-        values.push(randomInput[i].value)
+        const value = parseInt(randomInput[i].value); // Converte in numero
+        
+        numeriScritti.push(value); // Salva solo numeri validi
+        
     }
 
-    console.log(values);
-})
+    // Confronta i numeri scritti con quelli generati
+    const result = comparetion(randomNumbers, numeriScritti);
 
+    console.log("Numeri scritti dall'utente:", numeriScritti);
+    console.log("Numeri indovinati:", result);
 
+    // Mostra i risultati nella pagina
+    listaNumeri.classList.remove('d-none')
+
+    listaNumeri.innerHTML = `Hai indovinato ${result.length} numeri: ${result.join(", ")}`;
+    
+    
+});
+
+const numeriInseriti = document.getElementById('answers-form');
+numeriInseriti.classList.add('d-none')
+// Funzione per confrontare i numeri
+function comparetion(arrayRandom, writeArray) {
+    const indovinati = [];
+    for (let i = 0; i < arrayRandom.length; i++) {
+        if (writeArray.includes(arrayRandom[i])) {
+            indovinati.push(arrayRandom[i]); // Salva i numeri indovinati
+        }
+    }
+    return indovinati;
+}
 
