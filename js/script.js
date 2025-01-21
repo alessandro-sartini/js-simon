@@ -5,7 +5,7 @@
 // in cui l'utente deve inserire i numeri che ha visto precedentemente,
 //  nell'ordine che preferisce.
 // Dopo che sono stati inseriti i 5 numeri,
-//  il software dice quanti e quali dei numeri da indovinare sono stati individuati.
+// il software dice quanti e quali dei numeri da indovinare sono stati individuati.
 // **NOTA**: non è importante l'ordine con cui l'utente inserisce i numeri, basta che ne indovini il più possibile.
 // **BONUS:**
 // - Inseriamo la validazione: se l'utente mette due numeri uguali o inserisce cose diverse da numeri lo blocchiamo in qualche modo.
@@ -18,7 +18,6 @@
 // > - Individuate gli elementi di cui avete bisogno per realizzare il programma.
 // > - Immaginate la logica come fosse uno snack:
 //  "Dati 2 array di numeri, indica quali e quanti numeri ci sono in comune tra i due array"
-
 
 // !numeri casuali in array creato e riempito random
 let randomNumbers = [];
@@ -34,9 +33,6 @@ function numberGen(arrayNum) {
 }
 
 console.log(numberGen(randomNumbers));
-
-
-
 
 // Mostra i numeri generati nella console
 //! Funzione per aggiungere i numeri ai li APPENA CREATI
@@ -54,13 +50,9 @@ function displayNumbers(numbers) {
 
 }
 
-
 displayNumbers(randomNumbers)
 
-
 const listaNumeri = document.getElementById('numbers-list');
-
-
 
 //! FACCIO SPARIRE LA LISTA DI NUMERI DOPO TOT SECONDI
 setInterval(dNoneFunction, 3000)
@@ -74,23 +66,26 @@ function dNoneFunction() {
 
 }
 
-
-
 //! ho preso tutti i numeri scritti da utente
 const btn = document.querySelector('button');
+
 btn.addEventListener('click', function (event) {
-    event.preventDefault(); // Previene il comportamento predefinito del form
+
+    event.preventDefault();
+    //! Previene il comportamento predefinito del form
 
     const randomInput = document.querySelectorAll('.form-control');
     const numeriScritti = [];
 
     // Itera sugli input e salva i numeri
     for (let i = 0; i < randomInput.length; i++) {
+
         const value = parseInt(randomInput[i].value); // Converte in numero
         
         numeriScritti.push(value); // Salva solo numeri validi
         
     }
+
 
     // Confronta i numeri scritti con quelli generati
     const result = comparetion(randomNumbers, numeriScritti);
@@ -99,15 +94,18 @@ btn.addEventListener('click', function (event) {
     console.log("Numeri indovinati:", result);
 
     // Mostra i risultati nella pagina
-    listaNumeri.classList.remove('d-none')
+    const pStamp = document.getElementById('message');
 
-    listaNumeri.innerHTML = `Hai indovinato ${result.length} numeri: ${result.join(", ")}`;
+    pStamp.innerHTML = `Hai indovinato ${result.length} numeri: ${result.join(", ")}`;
     
     
 });
 
+
 const numeriInseriti = document.getElementById('answers-form');
+
 numeriInseriti.classList.add('d-none')
+
 // Funzione per confrontare i numeri
 function comparetion(arrayRandom, writeArray) {
     const indovinati = [];
@@ -116,6 +114,6 @@ function comparetion(arrayRandom, writeArray) {
             indovinati.push(arrayRandom[i]); // Salva i numeri indovinati
         }
     }
+    console.log(indovinati)
     return indovinati;
 }
-
